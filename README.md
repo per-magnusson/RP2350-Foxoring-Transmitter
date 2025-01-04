@@ -17,5 +17,6 @@ The transmitter mounted at the foot of a Sporitdent stand:
 
 Schematics:
 
-![schematics 250102](https://github.com/user-attachments/assets/8a6764a7-b0e4-456e-9afa-29480b5f92f6)
+![PiPico Foxoring schematic](https://github.com/user-attachments/assets/bcdc3f61-76f7-461d-beb8-5d6dbd3e982a)
+
 

@@ -5,7 +5,7 @@ The repo contains the source code, the PCB files (gerbers, assembly drawing, BOM
 
 PCB (without LCD):
 
-![Fig 17b 3D PCB switches](https://github.com/user-attachments/assets/9d82ab2d-b529-43cd-9ac4-fc49f754d514)
+![PiPico Foxoring no LCD](https://github.com/user-attachments/assets/ce08ca88-3ed7-40ae-8c90-eaa94995137f)
 
 The PCB with LCD (earlier revision):
 
@@ -17,6 +17,4 @@ The transmitter mounted at the foot of a Sporitdent stand:
 
 Schematics:
 
-![PiPico Foxoring schematic](https://github.com/user-attachments/assets/bcdc3f61-76f7-461d-beb8-5d6dbd3e982a)
-
-
+![image](https://github.com/user-attachments/assets/ed596fe9-ad6b-4d29-a701-4ba3609cdc74)

@@ -1,7 +1,11 @@
 # RP2350-Foxoring-Transmitter
-A weak 80 m transmitter for use in "foxoring", i.e. a version of transmitter hunting/fox hunting on the 80 m band where the approximate location of the transmitter is marked on the map. The transmitter uses a Raspeberry Pi Pico 2 to generate the RF signal without any additional active circuits, just some filtering and antenna matching. Plus components for convenience, like an LCD and some configuration switches.
+This project ia a weak 80 m transmitter for use in "foxoring", i.e. a version of transmitter hunting/fox hunting on the 80 m band where the approximate location of the transmitter is marked on the map. The transmitter uses a Raspeberry Pi Pico 2 to generate the RF signal without any additional active circuits, just some filtering and antenna matching. Plus components for convenience, like an LCD and some configuration switches.
 
 The repo contains the source code, the PCB files (gerbers, assembly drawing, BOM, schematics) and 3D models of a suitable box that can clamp onto a Sportident station glass fiber stand.
+
+Make sure to overclock the processor to 200 MHz. Otherwise the generated frequency will be incorrect. 
+
+The Arduino IDE with the Raspberry Pi Pico plugin by Earle F. Philhower can be used  to compile the code and upload it to the board.
 
 PCB (without LCD):
 

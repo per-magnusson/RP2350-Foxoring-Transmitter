@@ -77,7 +77,7 @@
 #include "config.h"
 #include <EEPROM.h>
 
-static const uint32_t POWER_BANK_PULSE_MS = 100;          // Length of power bank keep-alive pulse
+static const uint32_t POWER_BANK_PULSE_MS = 500;          // Length of power bank keep-alive pulse
 static const uint32_t POWER_BANK_PULSE_PERIOD_MS = 25000; // Time between power bank keep-alive pulses
 static const uint32_t LCD_STATIC_TIME = 3000;             // Time between each LCD change
 
@@ -100,7 +100,7 @@ const int SW1_Pin = 26;
 const int SW0_Pin = 27;
 const int Batt_Pin = 28;
 
-static const int LED_Pin = 25;
+const int LED_Pin = 25;
 static const int Resistor_Pin = 3; // To periodically pull power from the power bank so that it does not power off
 static const int Morse_Debug_Pin = 0;
 const int First_RF_Pin = 5;
@@ -233,6 +233,7 @@ void setup()
 
   Serial.println("End of setup");
   Serial.flush();
+  //test_rational_approx();
 }
 
 
@@ -390,10 +391,14 @@ void loop()
   if (digitalRead(Resistor_Pin) == HIGH) {
     if (global_time > resistor_time + POWER_BANK_PULSE_MS) {
       digitalWrite(Resistor_Pin, LOW);
+      digitalWrite(LED_Pin, LOW);
+      Serial.println("Power pulse OFF");
     }
   } else {
     if (global_time > resistor_time + POWER_BANK_PULSE_PERIOD_MS) {
       digitalWrite(Resistor_Pin, HIGH);
+      digitalWrite(LED_Pin, HIGH);
+      Serial.println("Power pulse ON");
       resistor_time = global_time;
     }
   }

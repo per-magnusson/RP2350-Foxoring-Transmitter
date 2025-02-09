@@ -21,6 +21,7 @@ extern const int SW3_Pin;
 extern const int SW2_Pin;
 extern const int SW1_Pin;
 extern const int SW0_Pin;
+extern const int LED_Pin;
 
 
 void initMorseRate(uint32_t WPM);

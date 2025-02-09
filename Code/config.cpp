@@ -46,8 +46,24 @@ switch2freq_t frequencies[] =
   {11, 3500000.0},
   {12, 3579545.0},
   {13, 3579900.0},
-  {14, 0.0}, // End of array
+  {14, 3571429.0}, // Divider = 28
+  {15, 3530000.0}, // Cycle through common foxoring frequencies
+  {16, 0.0}, // End of array
 };
+
+
+// List of frequencies to cycle between when switches are set to 0b1111
+double cycle_frequencies[] = 
+{
+  3530000.0,
+  3550000.0,
+  3570000.0,
+  3600000.0,
+  0
+};
+
+
+int cur_freq_cycle_index = 0;
 
 
 const char foxes[][MAX_FOX_LEN + 1] = 
@@ -266,8 +282,7 @@ void read_switches()
     load_EEPROM_config(); 
     return;
   }
-  // Not 0, use the switch settings
-  apply_frequency_switch(freq_switch);
+
   fox_switch = (sw[3]<<2) + (sw[2]<<1) + sw[1];
   fox_num_to_config(fox_switch);
   if(sw[0]) {
@@ -276,5 +291,28 @@ void read_switches()
     current_config.wpm = 10;
   }
   current_config.is_initialized_token = EEPROM_INITIALIZED_TOKEN;
+
+  if(freq_switch == 15) {
+    // 15 means cycle to the next in a list of common foxoring frequencies
+    double freq = cycle_frequencies[cur_freq_cycle_index++];
+    if(freq == 0) {
+      // Wrap to first frequency
+      cur_freq_cycle_index = 0;
+      freq = cycle_frequencies[cur_freq_cycle_index++];
+    }
+    current_config.frequency = freq;
+    Serial.printf("\n*** Switching to f = %.5g MHz ***\n\n", freq/1e6);
+    // Flash the LED based on the index to the frequency vector
+    int ii = 0;
+    while (ii++<cur_freq_cycle_index) {
+      digitalWrite(LED_Pin, HIGH);
+      sleep_ms(200);
+      digitalWrite(LED_Pin, LOW);
+      sleep_ms(200);
+    }
+    return;
+  }
+  // Neither 0 not 15, use the switch settings
+  apply_frequency_switch(freq_switch);
  
 }
